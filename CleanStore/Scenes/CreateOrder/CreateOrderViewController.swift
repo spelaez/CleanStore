@@ -13,10 +13,11 @@
 import UIKit
 
 protocol CreateOrderDisplayLogic: class {
-  func displaySomething(viewModel: CreateOrder.Something.ViewModel)
+  func displayExpirationDate(viewModel: CreateOrder.FormatExpirationDate.ViewModel)
 }
 
-class CreateOrderViewController: UITableViewController, CreateOrderDisplayLogic, UITextFieldDelegate {
+class CreateOrderViewController: UITableViewController, CreateOrderDisplayLogic {
+  // MARK: IBOutlets & IBActions
   // MARK: Text Fields
 
   @IBOutlet var textFields: [UITextField]!
@@ -31,16 +32,19 @@ class CreateOrderViewController: UITableViewController, CreateOrderDisplayLogic,
   @IBOutlet weak var expirationDateTextField: UITextField!
   @IBOutlet var expirationDatePicker: UIDatePicker!
 
-  @IBAction func expirationDatePickerValueChanged(sender: AnyObject) {
+
+  @IBAction func expirationDatePickerValueChanged(_ sender: Any) {
     let date = expirationDatePicker.date
     let request = CreateOrder.FormatExpirationDate.Request(date: date)
-    interactor?.formatExpirationDate(request)
+    interactor?.formatExpirationDate(request: request)
   }
+
+  // MARK: - Properties
 
   var interactor: CreateOrderBusinessLogic?
   var router: (NSObjectProtocol & CreateOrderRoutingLogic & CreateOrderDataPassing)?
 
-  // MARK: Object lifecycle
+  // MARK: - Object lifecycle
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -52,7 +56,7 @@ class CreateOrderViewController: UITableViewController, CreateOrderDisplayLogic,
     setup()
   }
   
-  // MARK: Setup
+  // MARK: - Setup
   
   private func setup() {
     let viewController = self
@@ -67,7 +71,7 @@ class CreateOrderViewController: UITableViewController, CreateOrderDisplayLogic,
     router.dataStore = interactor
   }
   
-  // MARK: Routing
+  // MARK: - Routing
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let scene = segue.identifier {
@@ -78,7 +82,7 @@ class CreateOrderViewController: UITableViewController, CreateOrderDisplayLogic,
     }
   }
   
-  // MARK: View lifecycle
+  // MARK: - View lifecycle
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -89,21 +93,16 @@ class CreateOrderViewController: UITableViewController, CreateOrderDisplayLogic,
     shippingMethodTextField.inputView = shippingMethodPicker
     expirationDateTextField.inputView = expirationDatePicker
   }
-  
-  // MARK: Do something
-  
-  //@IBOutlet weak var nameTextField: UITextField!
-  
-  func doSomething() {
-    let request = CreateOrder.Something.Request()
-    interactor?.doSomething(request: request)
-  }
-  
-  func displaySomething(viewModel: CreateOrder.Something.ViewModel) {
-    //nameTextField.text = viewModel.name
-  }
 
-  // MARK: UITextFieldDelegate
+  // MARK: - Display Logic
+
+  func displayExpirationDate(viewModel: CreateOrder.FormatExpirationDate.ViewModel) {
+    let date = viewModel.date
+    expirationDateTextField.text = date
+  }
+}
+// MARK: - UITextFieldDelegate
+extension CreateOrderViewController: UITextFieldDelegate {
 
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder()
@@ -115,11 +114,10 @@ class CreateOrderViewController: UITableViewController, CreateOrderDisplayLogic,
     }
     return true
   }
+}
 
-  @IBAction func expirationDatePickerValueChanged(_ sender: Any) {
-  }
-  // MARK: UITableViewDelegate
-
+// MARK: - UITableViewDelegate
+extension CreateOrderViewController {
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if let cell = tableView.cellForRow(at: indexPath) {
       for textField in textFields {
@@ -131,16 +129,18 @@ class CreateOrderViewController: UITableViewController, CreateOrderDisplayLogic,
   }
 }
 
+// MARK: - UIPickerViewDataSource
 extension CreateOrderViewController: UIPickerViewDataSource {
   func numberOfComponents(in pickerView: UIPickerView) -> Int {
     return 1
   }
 
   func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-    return interactor?.shipphingMethods.count
+    return interactor?.shippingMethods.count ?? 0
   }
 }
 
+// MARK: - UIPickerViewDelegate
 extension CreateOrderViewController: UIPickerViewDelegate {
   func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
     return interactor?.shippingMethods[row]
