@@ -12,6 +12,12 @@
 		DED87D2620A7C26D004EC81A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DED87D2420A7C26D004EC81A /* Main.storyboard */; };
 		DED87D2820A7C26F004EC81A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DED87D2720A7C26F004EC81A /* Assets.xcassets */; };
 		DED87D2B20A7C26F004EC81A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DED87D2920A7C26F004EC81A /* LaunchScreen.storyboard */; };
+		DED87D3A20A7C489004EC81A /* CreateOrderPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED87D3420A7C489004EC81A /* CreateOrderPresenter.swift */; };
+		DED87D3B20A7C489004EC81A /* CreateOrderWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED87D3520A7C489004EC81A /* CreateOrderWorker.swift */; };
+		DED87D3C20A7C489004EC81A /* CreateOrderRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED87D3620A7C489004EC81A /* CreateOrderRouter.swift */; };
+		DED87D3D20A7C489004EC81A /* CreateOrderModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED87D3720A7C489004EC81A /* CreateOrderModels.swift */; };
+		DED87D3E20A7C489004EC81A /* CreateOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED87D3820A7C489004EC81A /* CreateOrderViewController.swift */; };
+		DED87D3F20A7C489004EC81A /* CreateOrderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED87D3920A7C489004EC81A /* CreateOrderInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +28,12 @@
 		DED87D2720A7C26F004EC81A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DED87D2A20A7C26F004EC81A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DED87D2C20A7C26F004EC81A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DED87D3420A7C489004EC81A /* CreateOrderPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderPresenter.swift; sourceTree = "<group>"; };
+		DED87D3520A7C489004EC81A /* CreateOrderWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderWorker.swift; sourceTree = "<group>"; };
+		DED87D3620A7C489004EC81A /* CreateOrderRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderRouter.swift; sourceTree = "<group>"; };
+		DED87D3720A7C489004EC81A /* CreateOrderModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderModels.swift; sourceTree = "<group>"; };
+		DED87D3820A7C489004EC81A /* CreateOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderViewController.swift; sourceTree = "<group>"; };
+		DED87D3920A7C489004EC81A /* CreateOrderInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +66,7 @@
 		DED87D1F20A7C26D004EC81A /* CleanStore */ = {
 			isa = PBXGroup;
 			children = (
+				DED87D3220A7C34F004EC81A /* Scenes */,
 				DED87D2020A7C26D004EC81A /* AppDelegate.swift */,
 				DED87D2220A7C26D004EC81A /* ViewController.swift */,
 				DED87D2420A7C26D004EC81A /* Main.storyboard */,
@@ -62,6 +75,27 @@
 				DED87D2C20A7C26F004EC81A /* Info.plist */,
 			);
 			path = CleanStore;
+			sourceTree = "<group>";
+		};
+		DED87D3220A7C34F004EC81A /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				DED87D3320A7C353004EC81A /* CreateOrder */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		DED87D3320A7C353004EC81A /* CreateOrder */ = {
+			isa = PBXGroup;
+			children = (
+				DED87D3420A7C489004EC81A /* CreateOrderPresenter.swift */,
+				DED87D3520A7C489004EC81A /* CreateOrderWorker.swift */,
+				DED87D3620A7C489004EC81A /* CreateOrderRouter.swift */,
+				DED87D3720A7C489004EC81A /* CreateOrderModels.swift */,
+				DED87D3820A7C489004EC81A /* CreateOrderViewController.swift */,
+				DED87D3920A7C489004EC81A /* CreateOrderInteractor.swift */,
+			);
+			path = CreateOrder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +169,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DED87D3D20A7C489004EC81A /* CreateOrderModels.swift in Sources */,
+				DED87D3F20A7C489004EC81A /* CreateOrderInteractor.swift in Sources */,
+				DED87D3B20A7C489004EC81A /* CreateOrderWorker.swift in Sources */,
+				DED87D3E20A7C489004EC81A /* CreateOrderViewController.swift in Sources */,
 				DED87D2320A7C26D004EC81A /* ViewController.swift in Sources */,
+				DED87D3C20A7C489004EC81A /* CreateOrderRouter.swift in Sources */,
 				DED87D2120A7C26D004EC81A /* AppDelegate.swift in Sources */,
+				DED87D3A20A7C489004EC81A /* CreateOrderPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,7 +330,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.spelaez.CleanStore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -308,7 +348,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.spelaez.CleanStore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
