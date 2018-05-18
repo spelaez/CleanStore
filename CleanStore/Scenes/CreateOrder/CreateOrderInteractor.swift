@@ -13,25 +13,39 @@
 import UIKit
 
 protocol CreateOrderBusinessLogic {
-  var shippingMethods: [String] { get }
-  func formatExpirationDate(request: CreateOrder.FormatExpirationDate.Request)
+    var shippingMethods: [String] { get }
+    var orderToEdit: Order? { get }
+    func formatExpirationDate(request: CreateOrder.FormatExpirationDate.Request)
+    func createOrder(request: CreateOrder.CreateOrder.Request)
+    func showOrderToEdit(request: CreateOrder.EditOrder.Request)
+    func updateOrder(request: CreateOrder.UpdateOrder.Request)
 }
 
 protocol CreateOrderDataStore {
-  //var name: String { get set }
+    var shippingMethods: [String] { get }
+    var orderToEdit: Order? { get set }
 }
 
 class CreateOrderInteractor: CreateOrderBusinessLogic, CreateOrderDataStore {
-  var presenter: CreateOrderPresentationLogic?
-  var worker: CreateOrderWorker?
-  var shippingMethods = [
-    "Standard Shipping",
-    "Two-Day Shipping",
-    "One-Day Shipping"
-  ]
-
-  func formatExpirationDate(request: CreateOrder.FormatExpirationDate.Request) {
-    let response = CreateOrder.FormatExpirationDate.Response(date: request.date)
-    presenter?.presentExpirationDate(response: response)
-  }
+    var presenter: CreateOrderPresentationLogic?
+    var ordersWorker = OrdersWorker(ordersStore: OrdersMemStore())
+    var orderToEdit: Order?
+    var shippingMethods = [
+        ShipmentMethod(speed: .Standard).toString(),
+        ShipmentMethod(speed: .OneDay).toString(),
+        ShipmentMethod(speed: .TwoDay).toString()
+    ]
+    
+    // MARK: - Expiration date
+    
+    func formatExpirationDate(request: CreateOrder.FormatExpirationDate.Request) {
+        let response = CreateOrder.FormatExpirationDate.Response(date: request.date)
+        presenter?.presentExpirationDate(response: response)
+    }
+    
+    // MARK: - Create order
+    
+    func createOrder(request: CreateOrder.CreateOrder.Request) {
+        
+    }
 }
